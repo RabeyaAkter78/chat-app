@@ -15,7 +15,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import { useRouter } from "next/navigation";
+
 export default function LoginPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +51,12 @@ export default function LoginPage() {
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
+      localStorage.setItem("chat_user_name", name.trim());
+      localStorage.setItem("chat_user_phone", phone.trim());
       setSuccess(true);
+      setTimeout(() => {
+        router.push("/chat");
+      }, 1000);
     } catch (err) {
       setError("Something went wrong. Please try again.");
     } finally {
