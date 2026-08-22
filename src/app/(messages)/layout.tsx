@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChatLayout = () => {
+const ChatLayout = ({ children }: { children: React.ReactNode }) => {
   return <div>{children}</div>;
 };
 
